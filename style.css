@@ -1,0 +1,36 @@
+.playfair-display-title {
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* <font-weight>: Use a value from 400 to 900 */
+  font-style: normal;
+}
+  
+body {
+  margin: auto;
+  height: 100%;
+  width: 95%;
+  font-size: 1.5vmin;
+  font-family: 'Playfair Display', serif;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.title-box {
+  position: relative;
+  height: 20%;
+  top: 0;
+  padding-bottom: 5px;
+}
+
+.title-box-text {
+  display: grid;
+  align-content: end;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: 700;
+  text-transform: capitalize;
+  text-transform: uppercase;
+}
