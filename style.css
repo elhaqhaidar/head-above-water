@@ -34,3 +34,67 @@ body {
   text-transform: capitalize;
   text-transform: uppercase;
 }
+
+
+/* Habin */
+html {
+  height: 1.618;
+}
+body {
+    font-family: sans-serif;
+}
+.bg {
+  background: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100vh;
+  z-index: 1;
+} 
+.section {
+  display: flex; 
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+.section > * {
+  width: 50%; 
+}
+.section-img {
+  position: relative;
+  display: flex;
+}
+.section-img-inner {
+  height: 100vh;
+  position: fixed;
+  left: 5%;
+  width: 40%;
+  top: 0;
+  mix-blend-mode: multiply;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  filter: blur(30px);
+  opacity: 0;
+  background-position: 50% 40%;
+  transition: .6s ease, opacity .6s ease, background-position .8s ease;
+}
+.section-body {
+  display: flex;
+  align-items: center;
+}
+.section-text {
+  padding: 5vw;
+}
+.section.active .section-img-inner {
+  opacity: 1;
+  background-position: 50% 50%;
+  filter: blur(0);
+}
+h2 {
+  font-size: 3vw;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
