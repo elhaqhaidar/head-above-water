@@ -133,27 +133,27 @@ $(window).scroll(function() {
 }).scroll();
 
 // FOR DANNY'S PART
-$(window).scroll(function() {
-    let $window = $(window),
-        $body = $('body'),   
-        $section = $('.section');
-    let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
+// $(window).scroll(function() {
+//     let $window = $(window),
+//         $body = $('body'),   
+//         $section = $('.section-danny');
+//     let scroll = $window.scrollTop() + ($window.height() * 1 / 100); // Adjusted for activation point
   
-    $section.each(function() { 
-        let $currentSection = $(this);
-        if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
-            // Section is in the active area
-            if (!$currentSection.hasClass('active')) {
-                $('.section').removeClass('active'); // Remove 'active' from all sections
-                $body.removeClass(function (index, css) {
-                    return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
-                });
-                $currentSection.addClass('active'); // Add 'active' to this section
-            }
-        } else {
-            // Section is not in the active area
-            $currentSection.removeClass('active');
-        }
-    });
-  }).scroll();
+//     $section.each(function() { 
+//         let $currentSection = $(this);
+//         if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
+//             // Section is in the active area
+//             if (!$currentSection.hasClass('active')) {
+//                 $('.section-danny').removeClass('active'); // Remove 'active' from all sections
+//                 $body.removeClass(function (index, css) {
+//                     return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
+//                 });
+//                 $currentSection.addClass('active'); // Add 'active' to this section
+//             }
+//         } else {
+//             // Section is not in the active area
+//             $currentSection.removeClass('active');
+//         }
+//     });
+//   }).scroll();
     
