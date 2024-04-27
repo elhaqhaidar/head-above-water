@@ -158,19 +158,17 @@ body {
 }
 .section-img-inner {
   height: 100vh;
-  z-index: 1;
   position: fixed;
   left: 5%;
   width: 40%;
   top: 0;
-  mix-blend-mode: multiply;
+  mix-blend-mode: none;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  filter: blur(30px);
+  filter: none;
   opacity: 0;
   background-position: 50% 40%;
-  transition: .6s ease, opacity .6s ease, background-position .8s ease;
 }
 .section-body {
   display: flex;
@@ -190,4 +188,19 @@ h2 {
   margin-top: 0;
 }
 
+/* Danny */
 
+.section-img-inner-danny {
+  height: 100vh;
+  position: fixed;
+  left: 5%;
+  width: 40%;
+  top: 0;
+  mix-blend-mode: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  filter: none;
+  opacity: 0;
+  background-position: 50% 40%;
+}
