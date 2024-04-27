@@ -12,7 +12,6 @@ body {
   font-size: 1.5vmin;
   font-family: 'Playfair Display', serif;
   background-color: #ffffff;
-  overflow: hidden;
 }
 
 .title-box {
@@ -97,4 +96,5 @@ h2 {
   margin-bottom: 0.5em;
   margin-top: 0;
 }
+
 

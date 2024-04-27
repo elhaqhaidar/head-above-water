@@ -17,21 +17,33 @@
     <link rel="stylesheet" href="./style.css">
 
     <!-- Preload JS -->
-    <script type="module" src="./global.js"> </script>
+    <!-- <script type="module" src="./global.js"> </script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js">const scroll1 = document.getElementById('boston-landfill');</script>
+    <script src="global.js">const scroll2 = document.getElementById('boston-landfill');</script>
 
     <!-- Preconnect font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-
 </head>
+
 <body>
+<!-- <img class="background-image" src="./images/boston-flooding.jpeg" alt="Background Image"> -->
     <div class="title-box">
         <div class="title-box-text">Head Above Water</div>
     </div>
 
-    <!-- Content 01: Choose where to live (map) TANYA -->
-    <div class="content-container">
+    <nav>
+      <ul>
+        <li><a href="#content-01">Where would you like to live?</a></li>
+        <li><a href="#content-02">The changing shoreline of Boston</a></li>
+        <li><a href="#content-03">Land growth, population growth</a></li>
+        <li><a href="#content-04">Site of speculation, site of climate risk</a></li>
+      </ul>
+    </nav>
+
+    <!-- Content 01: Choose where to live (map) TANYA --
+    <div class="content-container" id="content-01">
         <div style="display: table-row; padding: 10px;">
           <div class="map">
               <div id="map-live">  </div>
@@ -43,8 +55,8 @@
         </div>
     </div>
 
-    <!-- Content 02: Growing area of Boston HAIDAR -->
-    <div class="content-container">
+    <!-- Content 02: Growing area of Boston HAIDAR --
+    <div class="content-container" id="content-02">
         <div style="display: table-row; padding: 10px;">
           <div class="diagram">
               <div id="graph-growth">  </div>
@@ -53,7 +65,7 @@
             <div class="description-box-text"> Here you can put some info about the graph </ß>
           </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Content 03: New construction in these areas HABIN -->
     <!-- <div class="content-container">
@@ -66,11 +78,10 @@
           </div>
         </div>
     </div> -->
-    <div class="bg">
-    </div>
+  <div class="content-container" id="content-03">
     <div class="section">
       <div class="section-img">
-        <div class="section-img-inner" style="background-image: url(1.png);"></div>
+        <div class="section-img-inner" style="background-image: url(./images/1.png);"></div>
       </div>
       <div class="section-body">
         <div class="section-text">
@@ -86,7 +97,7 @@
   
     <div class="section">
       <div class="section-img">
-        <div class="section-img-inner" style="background-image: url(2.png);"></div>
+        <div class="section-img-inner" style="background-image: url(./images/2.png);"></div>
       </div>
       <div class="section-body">
         <div class="section-text">
@@ -110,7 +121,7 @@
   
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(3.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/3.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -134,7 +145,7 @@
   
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(4.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/4.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -158,7 +169,7 @@
 
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(5.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/5.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -179,29 +190,32 @@
           </div>
         </div>
       </div>
-  
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
-      $(window).scroll(function(){
-        let $window = $(window),
-            $body = $('body'),   
-            $section = $('.section');
-        let scroll = $window.scrollTop() + ($window.height() / 3);
-        $section.each(function(){ 
-          if($(this).position().top <= scroll && $(this).position().top + $(this).height() > scroll){
+  $(window).scroll(function(){
+    let $window = $(window),
+        $body = $('body'),   
+        $sections = $('.content-1 .section'); // Target only sections within div with class 'content-1'
+    let scroll = $window.scrollTop() + ($window.height() / 3);
+    
+    $sections.each(function(){ 
+        // Calculate the position of the section relative to the document
+        let sectionTop = $(this).offset().top;
+        let sectionBottom = sectionTop + $(this).outerHeight();
+        
+        // Check if the section is within the viewport
+        if(sectionTop <= scroll && sectionBottom > scroll){
             $body.removeClass(function (index, css){
-              return (css.match (/(^|\s)color-\s+/g) || [].join(' '));
+                return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
             });
-            $('.section').removeClass('active');
+            $sections.removeClass('active');
             $(this).addClass('active');
-          }
-        });
-      }).scroll();
+        }
+    });
+  }).scroll();
   </script>
-
-
-
-
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) DANNY -->
     <h2>
@@ -210,7 +224,7 @@
     </h2>
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) -->
-    <div class="content-container">
+    <div class="content-container" id="content-4">
         <div style="display: table-row; padding: 10px;">
           <div class="map">
               <div id="map-speculation">  </div>
@@ -221,8 +235,8 @@
         </div>
     </div>
 
-    <!-- Content 05: Flood risk + flood insurance (??)-->
-    <div class="content-container">
+    <!-- Content 05: Grading the location -->
+    <div class="content-container" id="content-5">
         <div style="display: table-row; padding: 10px;">
           <div class="graph">
               <div id="graph-risk">  </div>
@@ -231,5 +245,5 @@
             <div class="description-box-text"> Here you can put some info about the graph </div>
           </div>
         </div>
-    </div>
+    </div> -->
 </html>
