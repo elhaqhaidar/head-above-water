@@ -1,19 +1,24 @@
-.playfair-display-title {
+/* .playfair-display-title {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
-  font-weight: 400; /* <font-weight>: Use a value from 400 to 900 */
+  font-weight: 400; /* <font-weight>: Use a value from 400 to 900 
   font-style: normal;
-}
+} */
   
+/* General styling */
+
 body {
   margin: auto;
   height: 100%;
   width: 95%;
   font-size: 1.5vmin;
-  font-family: 'Playfair Display', serif;
+  font-family: sans-serif;
   background-color: #ffffff;
   overflow: hidden;
 }
+}
+
+/* For content-0 (title) */
 
 .title-box {
   position: relative;
@@ -25,24 +30,59 @@ body {
 .title-box-text {
   display: grid;
   align-content: end;
-  background-color: white;
+  /* background-color: white; */
   width: 100%;
   height: 100%;
+  color: red;
   text-align: center;
-  font-size: 3.5vh;
+  font-size: 7vh;
   font-weight: 700;
   text-transform: capitalize;
   text-transform: uppercase;
+  padding-top: 50px;
 }
 
+.subtitle-text {
+  display: grid;
+  align-content: end;
+  /* background-color: white; */
+  text-align: center;
+  font-size: 2vh;
+  font-weight: 400;
+}
 
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Ensure it's behind other content */
+  object-fit: cover; /* Maintain aspect ratio while covering the entire container */
+}
+
+/* For contents */
+
+  .content-container {
+    position: relative;
+    z-index: 1;
+  }
+    #content-0 {
+      height: 100vh;
+    }
+    #content-1,
+    #content-2,
+    #content-3,
+    #content-4 {
+        top: 100%; /* Push them below content-0 */
+        left: 0;
+        width: 100%;
+     }
 /* Habin */
 html {
   height: 1.618;
 }
-body {
-    font-family: sans-serif;
-}
+
 .bg {
   background: black;
   position: fixed;

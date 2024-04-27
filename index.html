@@ -10,8 +10,8 @@
     <!-- Load d3 for each viz after this line -->
 
     <!-- Load mapbox.js -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <!-- <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet"> -->
 
     <!-- Load CSS -->
     <link rel="stylesheet" href="./style.css">
@@ -26,16 +26,17 @@
 
 </head>
 <body>
+    <img class="background-image" src="./images/boston-flooding.jpeg" alt="Background Image">
     <div class="title-box">
-        <div class="title-box-text">Head Above Water</div>
+      <div class="title-box-text">Head Above Water</div>
+      <div class="subtitle-text">Homebuyer's Guide to the Boston Market</div>
     </div>
 
     <!-- Content 01: Choose where to live (map) TANYA -->
-    <div class="content-container">
+    <div class="content-container" id="content-01">
         <div style="display: table-row; padding: 10px;">
           <div class="map">
               <div id="map-live">  </div>
-              <h2>hi hi hi</h2>
           </div>
           <div class="description-box">
             <div class="description-box-text"> Here you can put some info about the map </div>
@@ -44,7 +45,7 @@
     </div>
 
     <!-- Content 02: Growing area of Boston HAIDAR -->
-    <div class="content-container">
+    <div class="content-container" id="content-02">
         <div style="display: table-row; padding: 10px;">
           <div class="diagram">
               <div id="graph-growth">  </div>
@@ -66,11 +67,10 @@
           </div>
         </div>
     </div> -->
-    <div class="bg">
-    </div>
+  <div class="content-container" id="content-03">
     <div class="section">
       <div class="section-img">
-        <div class="section-img-inner" style="background-image: url(1.png);"></div>
+        <div class="section-img-inner" style="background-image: url(./images/1.png);"></div>
       </div>
       <div class="section-body">
         <div class="section-text">
@@ -86,7 +86,7 @@
   
     <div class="section">
       <div class="section-img">
-        <div class="section-img-inner" style="background-image: url(2.png);"></div>
+        <div class="section-img-inner" style="background-image: url(./images/2.png);"></div>
       </div>
       <div class="section-body">
         <div class="section-text">
@@ -110,7 +110,7 @@
   
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(3.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/3.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -134,7 +134,7 @@
   
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(4.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/4.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -158,7 +158,7 @@
 
       <div class="section">
         <div class="section-img">
-          <div class="section-img-inner" style="background-image: url(5.png);"></div>
+          <div class="section-img-inner" style="background-image: url(./images/5.png);"></div>
         </div>
         <div class="section-body">
           <div class="section-text">
@@ -179,29 +179,32 @@
           </div>
         </div>
       </div>
-  
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script>
-      $(window).scroll(function(){
-        let $window = $(window),
-            $body = $('body'),   
-            $section = $('.section');
-        let scroll = $window.scrollTop() + ($window.height() / 3);
-        $section.each(function(){ 
-          if($(this).position().top <= scroll && $(this).position().top + $(this).height() > scroll){
+  $(window).scroll(function(){
+    let $window = $(window),
+        $body = $('body'),   
+        $sections = $('.content-1 .section'); // Target only sections within div with class 'content-1'
+    let scroll = $window.scrollTop() + ($window.height() / 3);
+    
+    $sections.each(function(){ 
+        // Calculate the position of the section relative to the document
+        let sectionTop = $(this).offset().top;
+        let sectionBottom = sectionTop + $(this).outerHeight();
+        
+        // Check if the section is within the viewport
+        if(sectionTop <= scroll && sectionBottom > scroll){
             $body.removeClass(function (index, css){
-              return (css.match (/(^|\s)color-\s+/g) || [].join(' '));
+                return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
             });
-            $('.section').removeClass('active');
+            $sections.removeClass('active');
             $(this).addClass('active');
-          }
-        });
-      }).scroll();
+        }
+    });
+  }).scroll();
   </script>
-
-
-
-
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) DANNY -->
     <h2>
@@ -210,7 +213,7 @@
     </h2>
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) -->
-    <div class="content-container">
+    <div class="content-container" id="content-4">
         <div style="display: table-row; padding: 10px;">
           <div class="map">
               <div id="map-speculation">  </div>
@@ -221,8 +224,8 @@
         </div>
     </div>
 
-    <!-- Content 05: Flood risk + flood insurance (??)-->
-    <div class="content-container">
+    <!-- Content 05: Grading the location -->
+    <div class="content-container" id="content-5">
         <div style="display: table-row; padding: 10px;">
           <div class="graph">
               <div id="graph-risk">  </div>
