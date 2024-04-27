@@ -10,8 +10,8 @@
     <!-- Load d3 for each viz after this line -->
 
     <!-- Load mapbox.js -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
 
     <!-- Load CSS -->
     <link rel="stylesheet" href="./style.css">
@@ -32,18 +32,17 @@
     <div class="title-box">
         <div class="title-box-text">Head Above Water</div>
     </div>
-
     <nav>
       <ul>
         <li><a href="#content-01">Where would you like to live?</a></li>
-        <li><a href="#content-02">The changing shoreline of Boston</a></li>
-        <li><a href="#content-03">Land growth, population growth</a></li>
+        <li><a href="#boston-historical">The changing shoreline of Boston</a></li>
+        <li><a href="#boston-reclamation">Land growth, population growth</a></li>
         <li><a href="#content-04">Site of speculation, site of climate risk</a></li>
       </ul>
     </nav>
 
-    <!-- Content 01: Choose where to live (map) TANYA --
-    <div class="content-container" id="content-01">
+    <!-- Content 01: Choose where to live (map) TANYA -->
+    <!-- <div class="content-container" id="content-01">
         <div style="display: table-row; padding: 10px;">
           <div class="map">
               <div id="map-live">  </div>
@@ -53,32 +52,22 @@
             <div class="description-box-text"> Here you can put some info about the map </div>
           </div>
         </div>
+    </div> -->
+
+    <!-- Content 02: Growing area of Boston HAIDAR -->
+    <div class="content-container" id="boston-historical">
+      <div id="map-container">
+        <div id="map"></div>
+        <div id="yearslider" class="slidecontainer">
+          <input type="range" min="0" max="3" value="0" class="slider" id="layerSlider">
+          </div>
+        <div id="layerText"></div> <!-- Added element to display layer ID -->
+        <script type="module" src="./global.js"> </script>
+      </div> 
     </div>
 
-    <!-- Content 02: Growing area of Boston HAIDAR --
-    <div class="content-container" id="content-02">
-        <div style="display: table-row; padding: 10px;">
-          <div class="diagram">
-              <div id="graph-growth">  </div>
-          </div>
-          <div class="description-box">
-            <div class="description-box-text"> Here you can put some info about the graph </ß>
-          </div>
-        </div>
-    </div> -->
-
     <!-- Content 03: New construction in these areas HABIN -->
-    <!-- <div class="content-container">
-        <div style="display: table-row; padding: 10px;">
-          <div class="diagram">
-              <div id="graph-construction">  </div>
-          </div>
-          <div class="description-box">
-            <div class="description-box-text"> Here you can put some info about the graph </div>
-          </div>
-        </div>
-    </div> -->
-  <div class="content-container" id="content-03">
+  <div class="content-container" id="boston-reclamation">
     <div class="section">
       <div class="section-img">
         <div class="section-img-inner" style="background-image: url(./images/1.png);"></div>
@@ -191,32 +180,6 @@
         </div>
       </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script>
-  $(window).scroll(function(){
-    let $window = $(window),
-        $body = $('body'),   
-        $sections = $('.content-1 .section'); // Target only sections within div with class 'content-1'
-    let scroll = $window.scrollTop() + ($window.height() / 3);
-    
-    $sections.each(function(){ 
-        // Calculate the position of the section relative to the document
-        let sectionTop = $(this).offset().top;
-        let sectionBottom = sectionTop + $(this).outerHeight();
-        
-        // Check if the section is within the viewport
-        if(sectionTop <= scroll && sectionBottom > scroll){
-            $body.removeClass(function (index, css){
-                return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
-            });
-            $sections.removeClass('active');
-            $(this).addClass('active');
-        }
-    });
-  }).scroll();
-  </script>
-
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) DANNY -->
     <h2>
       Danny will work on this one:

@@ -4,6 +4,10 @@
   font-weight: 400; /* <font-weight>: Use a value from 400 to 900 */
   font-style: normal;
 }
+
+html {
+  height: 1.618;
+}
   
 body {
   margin: auto;
@@ -14,8 +18,16 @@ body {
   background-color: #ffffff;
 }
 
+nav {
+  position: relative; /* If not already set */
+  z-index: 10; /* Keeps it above map */
+  height: 50px; /* Adjust based on actual height */
+  margin-bottom: 20px; /* Adds space below the navigation */
+}
+
 .title-box {
   position: relative;
+  z-index: 10;
   height: 20%;
   top: 0;
   padding-bottom: 5px;
@@ -34,11 +46,91 @@ body {
   text-transform: uppercase;
 }
 
+.content-container {
+  margin-bottom: 500px;
+}
+
+/* Haidar */
+
+#boston-historical {
+  position: relative; /* Establishes a new positioning context for its children */
+  padding-top: 70px; /* Adjust based on nav and title box height */
+  margin-top: 10px; /* Space from the top of the document or previous content */
+  z-index: 5;
+}
+
+#map-container {
+  position: absolute;
+  min-height: 600px;
+  top: 0; /* Aligns to the top of #boston-historical, adjust if needed */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50px;
+  background-color: white;
+  box-sizing: border-box;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  background-color: #000; /* Optional: if you want a default background color for the map area */
+  border: none; /* Removes any border if previously set, since the container now handles the frame */
+}
+
+.toggle-btn { 
+  position: absolute;
+  z-index: 1;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#toggleLayer1 {
+  bottom: 10px;
+  right: 10px;
+}
+
+#toggleLayer2 {
+  bottom: 40px;
+  right: 10px;
+}
+.slider {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-appearance: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+#layerText {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Adjust background color and opacity as needed */
+  padding: 0px;
+  border-radius: 5px;
+  font-size: 30px;
+}
 
 /* Habin */
-html {
-  height: 1.618;
-}
+
 body {
     font-family: sans-serif;
 }
@@ -66,6 +158,7 @@ body {
 }
 .section-img-inner {
   height: 100vh;
+  z-index: 1;
   position: fixed;
   left: 5%;
   width: 40%;
