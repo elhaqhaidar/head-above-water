@@ -283,16 +283,58 @@ body {
   opacity: 1;
   background-position: 50% 50%;
   filter: blur(0);
-}
+}s
 h2 {
   font-size: 3vw;
   margin-bottom: 0.5em;
   margin-top: 0;
 }
 
-/* Danny */
 
-.section-img-inner-danny {
+/* Danny, bar chart */
+
+
+/* Danny, map */
+
+#boston-flood {
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align items horizontally */
+  justify-content: center; /* Center-align items vertically */
+  height: 100vh; /* Take full viewport height */
+  text-align: center; /* Center-align the text */
+}
+
+/* Style for the image */
+#boston-flood img {
+  width: 90%; /* Adjust the width as needed */
+  max-width: 900px; /* Set a maximum width to prevent it from becoming too large */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 20px; 
+}
+
+/* Style for the selector list */
+#imageSelector {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0; /* Space before and after the list */
+}
+
+/* Style for each list item */
+#imageSelector li {
+  cursor: pointer;
+  display: inline-block; /* Display list items inline */
+  margin: 0 10px; /* Horizontal space between items */
+  padding: 5px 10px; /* Padding inside each item */
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+#imageSelector li:hover {
+  background-color: #ccc; /* Change background on hover */
+}
+
+/* .section-img-inner-danny {
   height: 100vh;
   position: fixed;
   left: 5%;
@@ -305,4 +347,4 @@ h2 {
   filter: none;
   opacity: 0;
   background-position: 50% 40%;
-}
+} */
