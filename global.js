@@ -49,73 +49,74 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // FOR TANYA'S PART
 var selectedZone = 0;
-var zones = ["No selection","Waterfront", "scale"];
+var zones = ["No selection", "Waterfront", "scale"];
 var grades = ["", "A", "B"];
 
 function updateHeading() {
-      var heading = document.getElementById("zone-heading"); // Get the h2 by its ID
-      heading.innerText = zones[selectedZone]; // Set the text to the selected zone
-  }
+    var heading = document.getElementById("zone-heading");
+    heading.innerText = zones[selectedZone];
+}
 
-  function updateGrade() {
-      var heading = document.getElementById("zone-grade"); // Get the h2 by its ID
-      heading.innerText = grades[selectedZone]; // Set the text to the selected zone
-  }
+function updateGrade() {
+    var heading = document.getElementById("zone-grade");
+    heading.innerText = grades[selectedZone];
+}
 
-  // Run the function when the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", updateHeading);
+// Ensure modal functions are properly defined and wired
+function openModal() {
+    document.querySelector('.modal-overlay').style.display = 'flex';
+}
 
-  // Run the function when the DOM is fully loaded
-  document.addEventListener("DOMContentLoaded", updateHeading);
+function closeModal() {
+    document.querySelector('.modal-overlay').style.display = 'none';
+}
 
-  // Function to open the modal
-  function openModal() {
-      document.querySelector('.modal-overlay').style.display = 'flex';
-  }
+// Attach event listener to close modal button explicitly
+document.addEventListener("DOMContentLoaded", function() {
+    updateHeading();
+    updateGrade();
+    createGrid();
 
-  // Function to close the modal
-  function closeModal() {
-      document.querySelector('.modal-overlay').style.display = 'none';
-  }
-  function createGrid() {
-      var width = 800;
-      var height = 700;
+    // Attach click event listener to close button
+    document.querySelector('.close-modal').addEventListener('click', closeModal);
+});
 
-      var svg = d3.select("#map")
-          .append("svg")
-          .attr("width", width)
-          .attr("height", height);
+function createGrid() {
+    var width = 800;
+    var height = 700;
+    var svg = d3.select("#map")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-      var rows = 10;
-      var cols = 10;
+    var rows = 10;
+    var cols = 10;
+    var cellWidth = width / cols;
+    var cellHeight = height / rows;
 
-      var cellWidth = width / cols;
-      var cellHeight = height / rows;
+    for (var row = 0; row < rows; row++) {
+        for (var col = 0; col < cols; col++) {
+            var x = col * cellWidth;
+            var y = row * cellHeight;
 
-      for (var row = 0; row < rows; row++) {
-          for (var col = 0; col < cols; col++) {
-              var x = col * cellWidth;
-              var y = row * cellHeight;
-
-              svg.append("rect")
-                  .attr("x", x)
-                  .attr("y", y)
-                  .attr("width", cellWidth)
-                  .attr("height", cellHeight)
-                  .attr("class", "grid-cell")
-                  .on("click", function(){
-                    var index = parseInt(d3.select(this).attr("x")) / cellWidth + 
-                          (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
-                    selectedZone = 1;
+            svg.append("rect")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("width", cellWidth)
+                .attr("height", cellHeight)
+                .attr("class", "grid-cell")
+                .on("click", function() {
+                    var index = parseInt(d3.select(this).attr("x")) / cellWidth +
+                        (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
+                    selectedZone = 1; // This might need adjustment based on actual zone calculation
                     updateHeading();
                     updateGrade();
                     openModal();
-                  });
-          }
-      }
-  }
+                });
+        }
+    }
+}
 
-  document.addEventListener("DOMContentLoaded", createGrid);
 
 // FOR HAIDAR'S PART
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWxoYXFoIiwiYSI6ImNsdDNhcThkcTF1cHEya3JvbHY4eDJtaWIifQ.JFJvJb6fqR8On7uTnx4HVA';
