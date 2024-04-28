@@ -2,7 +2,47 @@
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: 400; /* <font-weight>: Use a value from 400 to 900 */
-  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+  font-family: 'Playfair Display', serif; /* Set the font family */
+}
+
+/* Optionally add other styling for headings */
+h1 {
+  font-size: 16pt; /* Example of larger size for h1 */
+  color: rgb(0, 0, 0); /* Example of specific color */
+  font-style: bold;
+}
+
+h3 {
+  font-size: 15pt; /* Adjust font size for h3 */
+  color: rgb(212, 116, 86); /* Example of specific color */
+  font-style:normal;
+}
+
+h4 {
+  font-size: 12pt; /* Example of larger size for h1 */
+  color: rgb(0, 0, 0); /* Example of specific color */
+  font-style:normal;
+}
+
+h5 {
+  font-size: 12pt; /* Adjust font size for h2 */
+  color: rgb(212, 116, 86); /* Example of specific color */
+  font-style:normal;
+}
+
+h6 {
+  font-size: 12pt; /* Adjust font size for h3 */
+  color: rgb(255, 255, 255); /* Example of specific color */
+  font-style:normal;
+}
+
+h7 {
+  font-size: 11pt; /* Adjust font size for h2 */
+  color: rgb(72, 90, 175); /* Example of specific color */
+  font-style:italic;
 }
 
 html {
@@ -91,7 +131,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
 
 /* Modal content styles */
 .modal-content {
-  background: white; /* White background */
+  background: rgba(72, 90, 125, 0.2); /* White background */
   padding: 20px;
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
