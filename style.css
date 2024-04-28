@@ -293,7 +293,16 @@ h2 {
 
 /* Danny, bar chart */
 
+#property-chart {
+  text-align: center; /* Centers the text within the container */
+  width: auto; /* Adjusts width to the content size, change as needed */
+  padding: 20px; /* Provides padding around the content */
+}
 
+#chart, #slider {
+  width: 100%; /* Ensures the chart and slider take full width of their container */
+  margin-top: 20px; /* Provides spacing between the elements */
+}
 /* Danny, map */
 
 #boston-flood {
