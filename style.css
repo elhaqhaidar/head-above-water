@@ -6,6 +6,7 @@
 
 h1, h2, h3, h4, h5, h6, h7 {
   font-family: 'Playfair Display', serif; /* Set the font family */
+  max-width: 600px;
 }
 
 /* Optionally add other styling for headings */
@@ -43,6 +44,10 @@ h7 {
   font-size: 11pt; /* Adjust font size for h2 */
   color: rgb(72, 90, 175); /* Example of specific color */
   font-style:italic;
+}
+
+p {
+  max-width: 600px;
 }
 
 html {
@@ -205,8 +210,10 @@ z-index: -1; /* Ensure the map background is behind the grid */
 }
 .slider {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 1;
   background: #d3d3d3;
   outline: none;
@@ -214,6 +221,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
   opacity: 1;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  width: 20%; /* Adjust this width as necessary */
 }
 
 .slider::-webkit-slider-thumb {
@@ -227,12 +235,15 @@ z-index: -1; /* Ensure the map background is behind the grid */
 
 #layerText {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
   background-color: rgba(255, 255, 255, 0.8); /* Adjust background color and opacity as needed */
   padding: 0px;
   border-radius: 5px;
   font-size: 30px;
+  width: fit-content; /* Ensures the width is as wide as the content inside */
 }
 
 /* Habin */
