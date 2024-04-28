@@ -15,11 +15,7 @@
 
     <!-- Load CSS -->
     <link rel="stylesheet" href="./style.css">
-
-    <!-- Preload JS -->
-    <!-- <script type="module" src="./global.js"> </script> -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js">const scroll1 = document.getElementById('boston-landfill', 'boston-map');</script>
-    <script src="global.js">const scroll2 = document.getElementById('boston-landfill', 'boston-map');</script>
+    
 
     <!-- Preconnect font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,17 +25,17 @@
 
 <body>
 <!-- <img class="background-image" src="./images/boston-flooding.jpeg" alt="Background Image"> -->
-    <div class="title-box">
+    <!-- <div class="title-box">
         <div class="title-box-text">Head Above Water</div>
     </div>
     <nav>
       <ul>
-        <li><a href="#content-01">Where would you like to live?</a></li>
+        <li><a href="#welcome-historical">Where would you like to live?</a></li>
         <li><a href="#boston-historical">The changing shoreline of Boston</a></li>
         <li><a href="#boston-reclamation">Land growth, population growth</a></li>
-        <li><a href="#content-04">Site of speculation, site of climate risk</a></li>
+        <li><a href="#boston-map">Site of speculation, site of climate risk</a></li>
       </ul>
-    </nav>
+    </nav> -->
 
     <!-- Content 01: Choose where to live (map) TANYA -->
     <div class="content-container" id="welcome-map">
@@ -73,9 +69,9 @@
     </div>
 
     <!-- Content 02: Growing area of Boston HAIDAR -->
-    <div class="content-container-haidar" id="boston-historical">
-      <div id="map-container-haidar">
-        <div id="map"></div>
+    <div class="content-container" id="boston-historical">
+      <div id="map-container-historical">
+        <div id="map-historical"></div>
         <div id="yearslider" class="slidecontainer">
           <input type="range" min="0" max="3" value="0" class="slider" id="layerSlider">
           </div>
@@ -169,16 +165,11 @@
       </div>
   </div>
 
-  <body>
     <h3>Property Values</h3>
     <div id="chart"></div>
     <div id="slider"></div>
 
     <script src="bar_script.js"></script>
-  </body>
-
-
-
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) -->
     <div id="boston-map">
@@ -191,8 +182,6 @@
           <div class="section-img-inner-danny" style="background-image: url(./images/boston-analysis-map/6.png);"></div>
         </div>
       </div>
-
-    </div>
 
       <div class="section-danny">
         <div class="section-img">
@@ -238,4 +227,22 @@
         <h1>a <h1 id="zone-grade"></h1> <h1> Grade Risk </h1>
     </center>
     </div>
+
+
+    <!-- Preload JS -->
+    <!-- <script type="module" src="./global.js"> </script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        const scroll1 = document.getElementById('boston-reclamation');
+        // If 'boston-map' is a separate element you want to access, you need another line:
+        const map = document.getElementById('boston-map');
+    </script>
+    <script src="global.js"></script>
+    <script>
+        const scroll2 = document.getElementById('boston-reclamation'); // Corrected usage
+        // If 'boston-map' is a separate element you want to access, you need another line:
+        const map2 = document.getElementById('boston-map');
+    </script>
+
+  </body>
 </html>

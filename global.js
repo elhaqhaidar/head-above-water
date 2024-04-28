@@ -1,3 +1,41 @@
+// LOADING JAVASCRIPT
+
+//THESE ARE NOT WORKING YET
+// document.addEventListener('DOMContentLoaded', function() {
+//     function loadCSS(id, url) {
+//         const elementExists = document.getElementById(id);
+//         if (elementExists) {
+//             const link = document.createElement('link');
+//             link.rel = 'stylesheet';
+//             link.href = url;
+//             document.head.appendChild(link);
+//         }
+//     }
+
+//     function loadJS(id, url) {
+//         const elementExists = document.getElementById(id);
+//         if (elementExists) {
+//             const script = document.createElement('script');
+//             script.src = url;
+//             document.body.appendChild(script);
+//         }
+//     }
+
+// // CALLING DIFFERENT JS & CSS FILES FOR DIFFERENT DIV IDs
+// // WELCOME MAP
+// // loadCSS('welcome-map', 'welcome-map-style.css');
+// loadJS('welcome-map', 'welcome-map-script.js');
+
+// // HISTORICAL MAP
+// // loadCSS('boston-historical', 'boston-historical-style.css');
+// loadJS('boston-historical', 'boston-historical-script.js');
+
+// // LAND & POPULATION EXPANSION
+// // loadCSS('boston-reclamation', 'boston-reclamation-style.css');
+// loadJS('boston-reclamation', 'boston-reclamation-script.js');
+
+// });
+
 // SMOOTH SCROLLING SCRIPT
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
@@ -10,81 +48,80 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // FOR TANYA'S PART
-     var selectedZone = 0;
-      var zones = ["No selection","Waterfront", "scale"];
-      var grades = ["", "A", "B"];
+var selectedZone = 0;
+var zones = ["No selection","Waterfront", "scale"];
+var grades = ["", "A", "B"];
 
-      function updateHeading() {
-            var heading = document.getElementById("zone-heading"); // Get the h2 by its ID
-            heading.innerText = zones[selectedZone]; // Set the text to the selected zone
-        }
+function updateHeading() {
+      var heading = document.getElementById("zone-heading"); // Get the h2 by its ID
+      heading.innerText = zones[selectedZone]; // Set the text to the selected zone
+  }
 
-        function updateGrade() {
-            var heading = document.getElementById("zone-grade"); // Get the h2 by its ID
-            heading.innerText = grades[selectedZone]; // Set the text to the selected zone
-        }
+  function updateGrade() {
+      var heading = document.getElementById("zone-grade"); // Get the h2 by its ID
+      heading.innerText = grades[selectedZone]; // Set the text to the selected zone
+  }
 
-        // Run the function when the DOM is fully loaded
-        document.addEventListener("DOMContentLoaded", updateHeading);
+  // Run the function when the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", updateHeading);
 
-        // Run the function when the DOM is fully loaded
-        document.addEventListener("DOMContentLoaded", updateHeading);
+  // Run the function when the DOM is fully loaded
+  document.addEventListener("DOMContentLoaded", updateHeading);
 
-        // Function to open the modal
-        function openModal() {
-            document.querySelector('.modal-overlay').style.display = 'flex';
-        }
+  // Function to open the modal
+  function openModal() {
+      document.querySelector('.modal-overlay').style.display = 'flex';
+  }
 
-        // Function to close the modal
-        function closeModal() {
-            document.querySelector('.modal-overlay').style.display = 'none';
-        }
-        function createGrid() {
-            var width = 800;
-            var height = 700;
+  // Function to close the modal
+  function closeModal() {
+      document.querySelector('.modal-overlay').style.display = 'none';
+  }
+  function createGrid() {
+      var width = 800;
+      var height = 700;
 
-            var svg = d3.select("#map")
-                .append("svg")
-                .attr("width", width)
-                .attr("height", height);
+      var svg = d3.select("#map")
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height);
 
-            var rows = 10;
-            var cols = 10;
+      var rows = 10;
+      var cols = 10;
 
-            var cellWidth = width / cols;
-            var cellHeight = height / rows;
+      var cellWidth = width / cols;
+      var cellHeight = height / rows;
 
-            for (var row = 0; row < rows; row++) {
-                for (var col = 0; col < cols; col++) {
-                    var x = col * cellWidth;
-                    var y = row * cellHeight;
+      for (var row = 0; row < rows; row++) {
+          for (var col = 0; col < cols; col++) {
+              var x = col * cellWidth;
+              var y = row * cellHeight;
 
-                    svg.append("rect")
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr("width", cellWidth)
-                        .attr("height", cellHeight)
-                        .attr("class", "grid-cell")
-                        .on("click", function(){
-                          var index = parseInt(d3.select(this).attr("x")) / cellWidth + 
-                                (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
-                          selectedZone = 1;
-                          updateHeading();
-                          updateGrade();
-                          openModal();
-                        });
-                }
-            }
-        }
+              svg.append("rect")
+                  .attr("x", x)
+                  .attr("y", y)
+                  .attr("width", cellWidth)
+                  .attr("height", cellHeight)
+                  .attr("class", "grid-cell")
+                  .on("click", function(){
+                    var index = parseInt(d3.select(this).attr("x")) / cellWidth + 
+                          (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
+                    selectedZone = 1;
+                    updateHeading();
+                    updateGrade();
+                    openModal();
+                  });
+          }
+      }
+  }
 
-        document.addEventListener("DOMContentLoaded", createGrid);
-
+  document.addEventListener("DOMContentLoaded", createGrid);
 
 // FOR HAIDAR'S PART
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWxoYXFoIiwiYSI6ImNsdDNhcThkcTF1cHEya3JvbHY4eDJtaWIifQ.JFJvJb6fqR8On7uTnx4HVA';
 
 const map = new mapboxgl.Map({
-    container: 'map',
+    container: 'map-historical',
     style: 'mapbox://styles/mapbox/satellite-v9',
     center: [-71.058884, 42.360081],
     zoom: 12
@@ -180,28 +217,28 @@ map.on('load', () => {
 
 // FOR HABIN'S PART
 $(window).scroll(function() {
-  let $window = $(window),
-      $body = $('body'),   
-      $section = $('.section');
-  let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
-
-  $section.each(function() { 
-      let $currentSection = $(this);
-      if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
-          // Section is in the active area
-          if (!$currentSection.hasClass('active')) {
-              $('.section').removeClass('active'); // Remove 'active' from all sections
-              $body.removeClass(function (index, css) {
-                  return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
-              });
-              $currentSection.addClass('active'); // Add 'active' to this section
-          }
-      } else {
-          // Section is not in the active area
-          $currentSection.removeClass('active');
-      }
-  });
-}).scroll();
+    let $window = $(window),
+        $body = $('body'),   
+        $section = $('.section');
+    let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
+  
+    $section.each(function() { 
+        let $currentSection = $(this);
+        if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
+            // Section is in the active area
+            if (!$currentSection.hasClass('active')) {
+                $('.section').removeClass('active'); // Remove 'active' from all sections
+                $body.removeClass(function (index, css) {
+                    return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
+                });
+                $currentSection.addClass('active'); // Add 'active' to this section
+            }
+        } else {
+            // Section is not in the active area
+            $currentSection.removeClass('active');
+        }
+    });
+  }).scroll();
 
 // FOR DANNY'S PART
 // $(window).scroll(function() {
@@ -227,4 +264,3 @@ $(window).scroll(function() {
 //         }
 //     });
 //   }).scroll();
-    

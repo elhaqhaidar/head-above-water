@@ -121,7 +121,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
   z-index: 5;
 }
 
-#map-container-haidar {
+#map-container-historical {
   position: absolute;
   min-height: 600px;
   top: 0; /* Aligns to the top of #boston-historical, adjust if needed */
@@ -133,7 +133,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
   box-sizing: border-box;
 }
 
-#map {
+#map-historical {
   height: 100%;
   width: 100%;
   background-color: #000; /* Optional: if you want a default background color for the map area */
