@@ -209,14 +209,16 @@
     </div>
     
 
+  <div class="content-container" id="property-chart">
     <h3>Property Values</h3>
     <div id="chart"></div>
     <div id="slider"></div>
+  </div>
 
     <script src="bar_script.js"></script>
 
     <!-- Content 04: Site of speculation, site of climate risk (scrolly map) -->
-    <div id="boston-map">
+    <!-- <div id="boston-map">
 
       <div class="bg">
       </div>
@@ -257,7 +259,19 @@
         </div>
       </div> 
 
-    </div>  
+    </div>   -->
+    <div class="content-container" id="boston-flood">
+    <img id="selectedImage" src="./images/boston-analysis-map/6.png" alt="Selected Image" width="500">
+    <ul id="imageSelector">
+      <li data-image="./images/boston-analysis-map/6.png">Residential sales transaction</li>
+      <li data-image="./images/boston-analysis-map/7.png">On reclaimed lands</li>
+      <li data-image="./images/boston-analysis-map/8.png">Within flood zones</li><br><br>
+      <li data-image="./images/boston-analysis-map/9.png">2030 projection</li>
+      <li data-image="./images/boston-analysis-map/10.png">2050 projection</li>
+      <li data-image="./images/boston-analysis-map/11.png">2070 projection</li>
+    </ul>
+      <br>
+    </div>
     
      <!-- Text; Final -->
      <div class="content-container" style="position: relative;">
@@ -273,7 +287,7 @@
         <h3> the address you selected is... </h3>
         <h2 id="zone-heading"></h2> 
         <br><br>
-        <h3> this propoerty has </h3>
+        <h3> this property has </h3>
         <br><br>
         <h1>a <h1 id="zone-grade"></h1> <h1> Grade Risk </h1>
     </center>
@@ -285,14 +299,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script>
         const scroll1 = document.getElementById('boston-reclamation');
-        // If 'boston-map' is a separate element you want to access, you need another line:
-        const map = document.getElementById('boston-map');
     </script>
     <script src="global.js"></script>
     <script>
-        const scroll2 = document.getElementById('boston-reclamation'); // Corrected usage
-        // If 'boston-map' is a separate element you want to access, you need another line:
-        const map2 = document.getElementById('boston-map');
+        const scroll2 = document.getElementById('boston-reclamation'); 
     </script>
 
   </body>

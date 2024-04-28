@@ -219,16 +219,17 @@ map.on('load', () => {
 // FOR HABIN'S PART
 $(window).scroll(function() {
     let $window = $(window),
-        $body = $('body'),   
-        $section = $('.section');
+        $body = $('body'),
+        // Include both section classes in the selection
+        $section = $('.section, .section-danny');
     let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
-  
-    $section.each(function() { 
+
+    $section.each(function() {
         let $currentSection = $(this);
         if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
             // Section is in the active area
             if (!$currentSection.hasClass('active')) {
-                $('.section').removeClass('active'); // Remove 'active' from all sections
+                $('.section, .section-danny').removeClass('active'); // Remove 'active' from all sections
                 $body.removeClass(function (index, css) {
                     return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
                 });
@@ -239,7 +240,19 @@ $(window).scroll(function() {
             $currentSection.removeClass('active');
         }
     });
-  }).scroll();
+}).scroll();
+
+
+// FOR DANNY'S PART
+document.addEventListener('DOMContentLoaded', function() {
+    var imageLinks = document.querySelectorAll('#imageSelector li');
+    imageLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            const imagePath = this.getAttribute('data-image');
+            document.getElementById('selectedImage').src = imagePath;
+        });
+    });
+});
 
 // FOR DANNY'S PART
 // $(window).scroll(function() {
