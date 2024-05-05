@@ -20,7 +20,7 @@ const svgMap = svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Load the data from CSV file
-d3.csv("test_data_fp4_small.csv").then(function(data) {
+d3.csv("./data-files/data_fp4.csv").then(function(data) {
 
     // Parse data
     data.forEach(function(d) {
