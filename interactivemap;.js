@@ -38,28 +38,28 @@ slider.on("input", function () {
 
 
 // Set up the dimensions of the chart
-const margin = { top: 100, right: 500, bottom: -5, left: -300 };
-const width = 1200 - margin.left - margin.right;
-const height = 900 - margin.top - margin.bottom;
+const margin1 = { top: 100, right: 500, bottom: -5, left: 200 };
+const width1 = 1800 - margin1.left - margin1.right;
+const height1 = 900 - margin1.top - margin1.bottom;
 
 // Create SVG element for both scatterplot and map
-const svg = d3.select("body")  // Select the body or any other container where you want the SVG to be appended
+const svg1 = d3.select("body")  // Select the body or any other container where you want the SVG to be appended
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+    .attr("width", width1 + margin1.left + margin1.right)
+    .attr("height", height1 + margin1.top + margin1.bottom);
 
 // Create the pop-up div
 const popup = d3.select("#popup-panel");
 
 // Append a group element for the scatterplot
-const svgScatterplot = svg.append("g")
+const svgScatterplot = svg1.append("g")
     .attr("class", "scatterplot")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
 // Append a group element for the map
-const svgMap = svg.append("g")
+const svgMap = svg1.append("g")
     .attr("class", "map")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
     // Function to update the scatterplot based on the current mode
 const updateScatterplot = (mode) => {
@@ -91,23 +91,12 @@ const updateScatterplot = (mode) => {
         .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
         .range([3, 35]); // Adjust the range for appropriate circle sizes
 
-    const xAxis = d3.axisBottom(xScale);
-    const yAxis = d3.axisLeft(yScale);
-
-    // Draw axes for scatterplot
-    svgScatterplot.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-
-    svgScatterplot.append("g")
-        .call(yAxis);
-
 
     // Load the GeoJSON data and draw the map
     d3.json("boston.geojson").then(function(bosNeighborhoods) {
         // Projections for map
         const bosProjection = d3.geoAlbers()
-            .scale(Math.min(width, height) * 520) // Adjust the scale based on the dimensions
+            .scale(Math.min(width1, height1) * 520) // Adjust the scale based on the dimensions
             .rotate([71.057, 0])
             .center([0, 42.313])
             .translate([width * 1.45/ 2, height * 1.4 / 2]);

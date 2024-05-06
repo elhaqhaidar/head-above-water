@@ -280,6 +280,18 @@
 
     </div>   -->
 
+    <div class="svg-center-container">  <!-- Wrapper for SVG to apply centering -->
+      <svg id="interactivemap" width="800" height="900"></svg>
+    </div>
+
+    <div class="popup" id="popup-panel"></div>
+    <script src="interactivemap;.js"></script> 
+
+  <!-- Slider for switching displays -->
+    <label for="display-slider">Time:</label>
+    <input type="range" id="display-slider" name="display-slider" min="0" max="3" step="1" value="0"> 
+    <span id="slider-value">Today</span>
+
      <!-- Text; Final -->
      <div class="content-container" style="position: relative;">
       <center>
@@ -289,15 +301,15 @@
     </div>
 
     <!-- Content 05: Grading the location -->
-    <div class="content-container" id="grade-statement">
+    <div class="navy-box content-container" id="grade-statement">
       <center>
-        <h3> the address you selected is... </h3>
+        <h3>The address you selected is...</h3>
         <h2 id="zone-heading"></h2>
         <br><br>
-        <h3> this property has </h3>
+        <h3>This property has</h3>
         <br><br>
-        <h1>a <h1 id="zone-grade"></h1> <h1> Grade Risk </h1>
-    </center>
+        <h1>A <h1 id="zone-grade"></h1> <h1> Grade Risk</h1>
+      </center>
     </div>
 
 

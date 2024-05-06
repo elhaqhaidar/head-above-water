@@ -111,6 +111,25 @@ nav {
 
 /* Tanya */
 
+
+
+.svg-center-container {
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+}
+
+.navy-box {
+  background-color:  rgb(72, 90, 175);  /* Navy background color */
+  padding: 20px;  /* Padding around the content */
+  border-radius: 10px;  /* Optional: rounded corners */
+  color: white;  /* Text color for contrast */
+  text-align: center;  /* Center text within the box */
+}
+
+.content-container {
+  /* Additional styling if needed for content-container */
+}
+
 .map-wrapper {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center horizontally */
