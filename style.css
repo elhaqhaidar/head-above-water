@@ -360,14 +360,35 @@ z-index: -1; /* Ensure the map background is behind the grid */
 }
 
 /* Style for the selector list */
-#imageSelector {
+#imageSelector2 {
   list-style: none;
   padding: 0;
   margin: 20px 0; /* Space before and after the list */
 }
 
 /* Style for each list item */
-#imageSelector li {
+#imageSelector2 li {
+  cursor: pointer;
+  display: inline-block; /* Display list items inline */
+  margin: 0 10px; /* Horizontal space between items */
+  padding: 5px 10px; /* Padding inside each item */
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+#imageSelector2 li:hover {
+  background-color: #ccc; /* Change background on hover */
+}
+
+/* Style for the selector list */
+#imageSelector1 {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0; /* Space before and after the list */
+}
+
+/* Style for each list item */
+#imageSelector1 li {
   cursor: pointer;
   display: inline-block; /* Display list items inline */
   margin: 0 10px; /* Horizontal space between items */

@@ -243,14 +243,43 @@ $(window).scroll(function() {
 }).scroll();
 
 
-// FOR DANNY'S PART
+// FOR BAR CHART
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('imageSelector').addEventListener('click', function(event) {
-        const target = event.target;
+    document.getElementById('imageSelector2').addEventListener('click', function(event) {
+        console.log("Clicked element:", event.target);  // Log which element was clicked
+        let target = event.target;
+        // Ensure we get the LI element, considering nested elements
+        while (target !== this && target.tagName.toLowerCase() !== 'li') {
+            target = target.parentNode;
+        }
         if (target.tagName.toLowerCase() === 'li') {
             const imagePath = target.getAttribute('data-image');
+            console.log("Attempting to load image path:", imagePath);  // Log the image path to be loaded
             if (imagePath) {
-                document.getElementById('selectedImage').src = imagePath;
+                document.getElementById('selectedImage2').src = imagePath;
+                console.log("Image path set successfully");
+            } else {
+                console.error("Image path not found");
+            }
+        }
+    });
+});
+
+// FOR DANNY'S PART
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('imageSelector1').addEventListener('click', function(event) {
+        console.log("Clicked element:", event.target);  // Log which element was clicked
+        let target = event.target;
+        // Ensure we get the LI element, considering nested elements
+        while (target !== this && target.tagName.toLowerCase() !== 'li') {
+            target = target.parentNode;
+        }
+        if (target.tagName.toLowerCase() === 'li') {
+            const imagePath = target.getAttribute('data-image');
+            console.log("Attempting to load image path:", imagePath);  // Log the image path to be loaded
+            if (imagePath) {
+                document.getElementById('selectedImage1').src = imagePath;
+                console.log("Image path set successfully");
             } else {
                 console.error("Image path not found");
             }
