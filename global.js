@@ -245,18 +245,19 @@ $(window).scroll(function() {
 
 // FOR DANNY'S PART
 document.addEventListener('DOMContentLoaded', function() {
-    var imageLinks = document.querySelectorAll('#imageSelector li');
-    imageLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            const imagePath = this.getAttribute('data-image');
+    document.getElementById('imageSelector').addEventListener('click', function(event) {
+        const target = event.target;
+        if (target.tagName.toLowerCase() === 'li') {
+            const imagePath = target.getAttribute('data-image');
             if (imagePath) {
                 document.getElementById('selectedImage').src = imagePath;
             } else {
                 console.error("Image path not found");
             }
-        });
+        }
     });
 });
+
 // FOR DANNY'S PART
 // $(window).scroll(function() {
 //     let $window = $(window),
