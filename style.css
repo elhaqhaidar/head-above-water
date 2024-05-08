@@ -4,15 +4,26 @@
   font-weight: 400; /* <font-weight>: Use a value from 400 to 900 */
 }
 
-h1, h2, h3, h4, h5, h6, h7 {
-  font-family: 'Playfair Display', serif; /* Set the font family */
+body {
+  font-family: sans-serif;
 }
 
-/* Optionally add other styling for headings */
+h1, h2, h3, h4, h5, h6, h7, p {
+  font-family: 'Playfair Display', serif; /* Set the font family */
+  max-width: 600px;
+}
+
+
 h1 {
   font-size: 16pt; /* Example of larger size for h1 */
   color: rgb(0, 0, 0); /* Example of specific color */
   font-style: bold;
+}
+
+h2 {
+  font-size: 3vw;
+  margin-bottom: 0.5em;
+  margin-top: 0;
 }
 
 h3 {
@@ -43,6 +54,10 @@ h7 {
   font-size: 11pt; /* Adjust font size for h2 */
   color: rgb(72, 90, 175); /* Example of specific color */
   font-style:italic;
+}
+
+p {
+  max-width: 600px;
 }
 
 html {
@@ -96,6 +111,25 @@ nav {
 
 /* Tanya */
 
+
+
+.svg-center-container {
+  display: flex;
+  justify-content: center;  /* Centers horizontally */
+}
+
+.navy-box {
+  background-color:  rgb(72, 90, 175);  /* Navy background color */
+  padding: 20px;  /* Padding around the content */
+  border-radius: 10px;  /* Optional: rounded corners */
+  color: white;  /* Text color for contrast */
+  text-align: center;  /* Center text within the box */
+}
+
+.content-container {
+  /* Additional styling if needed for content-container */
+}
+
 .map-wrapper {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center horizontally */
@@ -135,7 +169,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
 
 /* Modal content styles */
 .modal-content {
-  background: rgba(72, 90, 125, 0.2); /* White background */
+  background: rgba(72, 90, 125, 0.9);
   padding: 20px;
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Drop shadow */
@@ -205,15 +239,18 @@ z-index: -1; /* Ensure the map background is behind the grid */
 }
 .slider {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 1;
-  background: #d3d3d3;
+  background: #f0f0f0;
   outline: none;
   -webkit-appearance: none;
   opacity: 1;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  width: 20%; /* Adjust this width as necessary */
 }
 
 .slider::-webkit-slider-thumb {
@@ -221,25 +258,25 @@ z-index: -1; /* Ensure the map background is behind the grid */
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #4CAF50;
+  background: rgb(255, 149, 0);
   cursor: pointer;
 }
 
 #layerText {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
   background-color: rgba(255, 255, 255, 0.8); /* Adjust background color and opacity as needed */
   padding: 0px;
   border-radius: 5px;
   font-size: 30px;
+  width: fit-content; /* Ensures the width is as wide as the content inside */
 }
 
 /* Habin */
 
-body {
-    font-family: sans-serif;
-}
 .bg {
   background: black;
   position: fixed;
@@ -287,12 +324,8 @@ body {
   opacity: 1;
   background-position: 50% 50%;
   filter: blur(0);
-}s
-h2 {
-  font-size: 3vw;
-  margin-bottom: 0.5em;
-  margin-top: 0;
 }
+
 
 
 /* Danny, bar chart */
@@ -361,3 +394,15 @@ h2 {
   opacity: 0;
   background-position: 50% 40%;
 } */
+
+/* For Interactive Map */
+.popup {
+  position: absolute;
+  background:  rgb(72, 90, 175);
+  border: 0px solid black;
+  padding: 10px;
+  display: none; /* Hidden by default */
+  transition: all 0.3s; /* Smooth transition for appearance and disappearance */
+  z-index: 1000; /* Ensure the pop-up appears above other elements */
+  border-radius: 10px; 
+  font-family: sans-serif;

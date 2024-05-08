@@ -249,11 +249,14 @@ document.addEventListener('DOMContentLoaded', function() {
     imageLinks.forEach(function(link) {
         link.addEventListener('click', function() {
             const imagePath = this.getAttribute('data-image');
-            document.getElementById('selectedImage').src = imagePath;
+            if (imagePath) {
+                document.getElementById('selectedImage').src = imagePath;
+            } else {
+                console.error("Image path not found");
+            }
         });
     });
 });
-
 // FOR DANNY'S PART
 // $(window).scroll(function() {
 //     let $window = $(window),
