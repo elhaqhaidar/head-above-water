@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function createGrid() {
+
     var width = 800;
     var height = 700;
     var svg = d3.select("#map")
@@ -193,7 +194,7 @@ map.on('load', () => {
         } else if (value === 2) {
             switchLayer('1838');
             layerText.textContent = '1838'; // Display '1838' when slider value is 2
-        
+
         } else if (value === 3) {
             switchLayer('1906');
             layerText.textContent = '1906'; // Display '1838' when slider value is 3
@@ -290,11 +291,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // FOR DANNY'S PART
 // $(window).scroll(function() {
 //     let $window = $(window),
-//         $body = $('body'),   
+//         $body = $('body'),
 //         $section = $('.section-danny');
 //     let scroll = $window.scrollTop() + ($window.height() * 1 / 100); // Adjusted for activation point
-  
-//     $section.each(function() { 
+
+//     $section.each(function() {
 //         let $currentSection = $(this);
 //         if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
 //             // Section is in the active area

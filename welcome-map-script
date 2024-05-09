@@ -56,7 +56,7 @@
     //                     .attr("height", cellHeight)
     //                     .attr("class", "grid-cell")
     //                     .on("click", function(){
-    //                       var index = parseInt(d3.select(this).attr("x")) / cellWidth + 
+    //                       var index = parseInt(d3.select(this).attr("x")) / cellWidth +
     //                             (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
     //                       selectedZone = 1;
     //                       updateHeading();
