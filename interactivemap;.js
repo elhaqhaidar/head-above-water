@@ -64,7 +64,7 @@ const svgMap = svg1.append("g")
     // Function to update the scatterplot based on the current mode
 const updateScatterplot = (mode) => {
     // Load the data from CSV file
-    d3.csv("./data-files/data_fp4.csv").then(function(data) {
+    d3.csv("test_data_fp4.csv").then(function(data) {
 
     // Parse data
     data.forEach(function(d) {
