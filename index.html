@@ -287,10 +287,20 @@
     <center>
       <h3> What does this mean for home-seekers?</h3>
       <br>
-      <h4>Analysis of the dataset</h4>
-      <h4>Sources & Methodology</h4>
+      <h4>To better understand the risks faced by prospective renters and homeowners in the Boston market,
+        we compiled geospatial data from third-party sources to overlay onto residential sales
+        data characterizing the Boston Market between 2000 and 2023.
+        <br>
+      </h4>
+      <h4></h4>
+      <h4>Sources</h4>
+      <li>Dataset: Residential Sales data in the City of Boston, 2000-2023. Provided by The Warren Group.</li>
+      <li>Dataset: FEMA Special Flood Hazard Area (SFHA).</li>
+      <li>Dataset: <a href="https://data.boston.gov/dataset/?q=sea+level&organization=boston-maps&res_format=ArcGIS+GeoServices+REST+API&res_format=CSV&res_format=HTML&res_format=ZIP&sort=score+desc%2C+metadata_modified+desc">Climate Ready Boston, Sea-Level Rise</a>
+      </li>
+      <h4>Methodology</h4>
       <p>
-        Cite MAPC, Climate Ready Boston, FEMA
+        Spatial intersections were performed using <a href="https://pandas.pydata.org/">Pandas</a> in Python.
       </p>
     </center>
   </div>
@@ -301,11 +311,15 @@
         <img src="./images/property_trends.png" alt="property trends" width="900">
         <h4 style="text-align: left;">
           <br><br><br><br>
-          loooking at the property values ..
+          With the prospect of looming sea level rise and heightened flood risk throughout Boston,
+          we expect that the buying and selling of properties would account for this near term risk.
           <br>
-          asdfoaosdfoasdf
           <br>
-          asdfoaosdfoasdf
+          However, despite overall property sales remaining consistent, we note that two categories <u>Special Flood Hazard Area</u>
+          and <u>9" Sea Level Rise</u> are actually increasing in the last four years.
+          <br>
+          <br>
+          Similarly, we see that these zones are where more new properties are being built.
 
         </h4>
       </div>
@@ -316,11 +330,20 @@
       <img src="./images/trading_frequency.png" alt="property trends" width="900" >
       <h4 style="text-align: left;">
         <br><br><br><br>
-        loooking at the property values ..
+        Has property speculation not been accounting for sea-level rise?
         <br>
-        asdfoaosdfoasdf
         <br>
-        asdfoaosdfoasdf
+        It's well known that buying and selling property is lucrative investment practice, but increasingly,
+        the practice of flipping means that people are buying and selling properties within a shorter timespan.
+        <br>
+        <br>
+        By counting which unique addresses are most frequently sold, we can analyze the impact of this
+        property speculation on properties falling within the different spatial risk zones.
+        <br>
+        <br>
+        Surprisingly, we find that across the categories, spatial risk has little to no correlation with how frequently a property is sold.
+        This means that so far in the twenty-first century, flood risk has not been driving market behavior.
+        How sustainable can this practice be?
 
       </h4>
     </div>
@@ -331,11 +354,19 @@
       <img src="./images/property_value.png" alt="property trends" width="900">
       <h4 style="text-align: left;">
         <br><br><br>
-        Property trends have been
+        The properties most prone to near term flood risk are those we would associate with "waterfront" communities such
+        as North End, East Boston, and Seaport.
         <br>
-        asdfoaosdfoasdf
         <br>
-        asdfoaosdfoasdf
+        As these properties are highly sought over for their convenient central locations, we also see that their prices
+        are higher on average compared to the Boston Market.
+        <br>
+        <br>
+        This trend appears in this chart as a diagonal clustering of properties between the $1-5 million price range.
+        <br>
+        Alarmingly, a smaller cluster appears in the row of properties sold 6 times or more, which are priced below $1 million.
+        These more affordable properties which are traded at a high frequency and face near term flood risk are potentially dangerous
+        for homebuyers entering the market.
 
       </h4>
     </div>
@@ -346,12 +377,12 @@
       <img src="./images/risk_exposure.png" alt="property trends" width="900">
       <h4 style="text-align: left;">
         <br><br><br><br>
-        loooking at the property values ..
+        All property types will face some exposure to flood risk in the coming century,
+        but condominiums and apartments in particular face heightened risk.
         <br>
-        asdfoaosdfoasdf
         <br>
-        asdfoaosdfoasdf
-
+        By 2070, in the 36" Sea-Level Rise scenario, more than 20% of condominiums and 15% of apartments in Boston
+        will coincide with the 100-year flood zone.
       </h4>
     </div>
   </div>
