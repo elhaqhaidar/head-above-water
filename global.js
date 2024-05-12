@@ -224,29 +224,39 @@ map.on('load', () => {
 
 // FOR HABIN'S PART
 $(window).scroll(function() {
-    let $window = $(window),
-        $body = $('body'),
-        // Include both section classes in the selection
-        $section = $('.section, .section-danny');
-    let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
-
-    $section.each(function() {
-        let $currentSection = $(this);
-        if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
-            // Section is in the active area
-            if (!$currentSection.hasClass('active')) {
-                $('.section, .section-danny').removeClass('active'); // Remove 'active' from all sections
-                $body.removeClass(function (index, css) {
-                    return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
-                });
-                $currentSection.addClass('active'); // Add 'active' to this section
-            }
+    // This scroll function now handles only the specific reclamation section
+    $('.section').each(function() {
+        let $section = $(this);
+        let scroll = $(window).scrollTop() + ($(window).height() * 0.1);
+        if ($section.position().top <= scroll && $section.position().top + $section.height() > scroll) {
+            $('.section').removeClass('active');
+            $section.addClass('active');
         } else {
-            // Section is not in the active area
-            $currentSection.removeClass('active');
+            $section.removeClass('active');
         }
     });
-}).scroll();
+});
+
+// Separate interaction for the map not influenced by general scroll event
+function updateInteractiveMapOnScroll() {
+    let scrollPosition = $(window).scrollTop();
+    // Add logic here if the interactive map's display or behavior needs to change on scroll
+}
+
+// Debounce the map update function to minimize performance impact
+$(window).scroll(debounce(updateInteractiveMapOnScroll, 150));
+
+// Debounce implementation
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
 
 
 // FOR BAR CHART
