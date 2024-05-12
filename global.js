@@ -80,12 +80,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // Attach click event listener to close button
     document.querySelector('.close-modal').addEventListener('click', closeModal);
 });
+
+// Initialize grid flag
 gridCreated = false
 function createGrid() {
     if (gridCreated) {
         return; // Exit function if grid is already created
     }
-
     var width = 800;
     var height = 700;
     var svg = d3.select("#map")
@@ -119,7 +120,6 @@ function createGrid() {
                 });
         }
     }
-
     gridCreated = true;
 }
 
