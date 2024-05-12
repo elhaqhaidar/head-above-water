@@ -81,11 +81,11 @@ const updateScatterplot = (mode) => {
 
         const xScale = d3.scaleLinear()
             .domain([d3.min(data, d => d.x) - xPadding, d3.max(data, d => d.x) + xPadding])
-            .range([0, width]);
+            .range([0, width1]);
 
         const yScale = d3.scaleLinear()
             .domain([d3.min(data, d => d.y) - yPadding, d3.max(data, d => d.y) + yPadding])
-            .range([height, 0]);
+            .range([height1, 0]);
 
     const radiusScale = d3.scaleLinear()
         .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
@@ -99,7 +99,7 @@ const updateScatterplot = (mode) => {
             .scale(Math.min(width1, height1) * 520) // Adjust the scale based on the dimensions
             .rotate([71.057, 0])
             .center([0, 42.313])
-            .translate([width * 1.45/ 2, height * 1.4 / 2]);
+            .translate([width1 * 1.45/ 2, height1 * 1.4 / 2]);
 
         const bos_geoPath = d3.geoPath().projection(bosProjection);
 
