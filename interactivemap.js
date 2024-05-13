@@ -1,8 +1,10 @@
 let mode,currentMode;
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
-    const slider = document.getElementById("display-slider");
-    const sliderValue = document.getElementById("slider-value");
+    const slider = d3.select("#display-slider");
+    const sliderValue = d3.select("#slider-value");
 
 // Function to get the display mode based on the slider's value
 const getDisplayMode = (value) => {
@@ -26,7 +28,7 @@ slider.on("input", function () {
     console.log(sliderPosition);
     const mode = getDisplayMode(sliderPosition); // Get the descriptive mode based on the slider position
 
-    sliderValue.text(mode); // Update the text element
+    sliderValue.text(getDisplayMode(sliderPosition)); // Update the text element
     //console.log("Slider changed to:", sliderPosition, "Mode:", mode); // Debugging to confirm event handling
     if (sliderPosition == "1"){
         console.log("1");
