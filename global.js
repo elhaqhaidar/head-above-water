@@ -49,17 +49,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // FOR TANYA'S PART
 var selectedZone = 0;
-var zones = ["No selection", "Waterfront", "scale"];
+var zones = [
+    "","","","Waterfront", "Waterfront", "Waterfront","Inland", "Inland", "Inland", "Inland",
+    "","","","Inland", "Waterfront", "Inland","Inland", "Inland", "Inland", "Riverside",
+    "","","","Inland", "Waterfront", "Waterfront","Waterfront", "Waterfront", "Riverside", "Inland",
+    "","","","Inland", "Inland", "Inland","Waterfront", "Waterfront", "In the Airport", "In the Airport",
+    "","","","Inland", "Riverside", "Riverside","Waterfront", "Waterfront", "In the Airport", "In the Airport",
+    "","","","Riverside", "Riverside", "Inland","Waterfront", "In the Sea", "Waterfront", "In the Airport",
+    "","","","Inland", "Inland", "Inland","Waterfront", "Waterfront", "Waterfront", "Waterfront",
+    "","","","Inland", "Inland", "Inland","Inland", "Waterfront", "Waterfront", "In the Sea",
+    "","","","Inland", "Inland", "Inland","Waterfront", "Waterfront", "In the Sea", "In the Sea",
+    "","","","Inland", "Inland", "Inland","Inland", "Waterfront", "In the Sea", "In the Sea",
+];
 var grades = [
-    "A", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
-    "C", "A", "B","C", "A", "B", "C",
+    "","","","C", "C", "C", "A", "A", "A",
+    "","","", "A", "A", "C", "A", "A", "A", "A",
+     "","","",  "B", "A", "C", "C", "C", "C", "B", "A", 
+      "","","","A", "A", "A", "C", "C", "D", "D", 
+    "","","", "A", "B", "B", "C", "C", "D", "D",
+    "","","", "B", "B", "A", "C", "F", "C", "D", 
+     "","","","A", "A", "A", "C", "C", "C", "C",
+    "","","", "A", "A", "A", "A", "C", "C", "F",
+     "","","", "A", "A", "A", "C", "C", "F", "F", 
+     "","","","A", "A", "A", "A", "C", "F", "F"
 ];
 
 function updateHeading() {
@@ -123,7 +135,9 @@ function createGrid() {
                 .on("click", function() {
                     var index = parseInt(d3.select(this).attr("x")) / cellWidth +
                         (parseInt(d3.select(this).attr("y")) / cellHeight) * cols;
-                    selectedZone = 1; // This might need adjustment based on actual zone calculation
+                        console.log(index);
+
+                    selectedZone = index; // This might need adjustment based on actual zone calculation
                     updateHeading();
                     updateGrade();
                     openModal();
