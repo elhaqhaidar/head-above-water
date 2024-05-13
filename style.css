@@ -294,6 +294,10 @@ z-index: -1; /* Ensure the map background is behind the grid */
   width: fit-content; /* Ensures the width is as wide as the content inside */
 }
 
+#toggleGeoJSON {
+  bottom: 60px; /* Adjust distance from bottom */
+  right: 60px; /* Keep consistent with other toggles */
+}
 /* Habin */
 
 .bg {
