@@ -50,7 +50,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // FOR TANYA'S PART
 var selectedZone = 0;
 var zones = ["No selection", "Waterfront", "scale"];
-var grades = ["", "A", "B"];
+var grades = [
+    "A", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+];
 
 function updateHeading() {
     var heading = document.getElementById("zone-heading");
@@ -81,7 +91,12 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('.close-modal').addEventListener('click', closeModal);
 });
 
+// Initialize grid flag
+gridCreated = false
 function createGrid() {
+    if (gridCreated) {
+        return; // Exit function if grid is already created
+    }
     var width = 800;
     var height = 700;
     var svg = d3.select("#map")
@@ -115,6 +130,7 @@ function createGrid() {
                 });
         }
     }
+    gridCreated = true;
 }
 
 
@@ -133,138 +149,204 @@ map.on('style.load', () => {
 });
 
 map.on('load', () => {
-    map.addSource('elhaqh.60kkelua', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.60kkelua'
+    // Adding raster sources and layers
+    const layers = [
+        { id: '1775', source: 'elhaqh.dkyujzd4' },
+        { id: '1838', source: 'elhaqh.4l9l2pmj' },
+        { id: '1906', source: 'elhaqh.6dftg5jc' }
+    ];
+
+    layers.forEach(layer => {
+        map.addSource(layer.id, {
+            'type': 'raster',
+            'url': 'mapbox://' + layer.source
+        });
+        map.addLayer({
+            'id': layer.id,
+            'source': layer.id,
+            'type': 'raster',
+            'layout': {
+                'visibility': 'none' // Initially hide the layer
+            },
+        });
+    });
+
+    // Adding the GeoJSON source and layer
+    map.addSource('historic-geojson', {
+        'type': 'vector',
+        'url': 'mapbox://elhaqh.bgs4ssgs'
     });
 
     map.addLayer({
-        'id': '1630',
-        'source': 'elhaqh.60kkelua',
-        'type': 'raster',
+        'id': 'historic-layer',
+        'type': 'fill',
+        'source': 'historic-geojson',
+        'source-layer': 'cleaned_21inch_OGS84-0hvyjb',
         'layout': {
-            'visibility': 'none' // Initially hide the layer
+            'visibility': 'none' // Layer is initially hidden
         },
+        'paint': {
+            'fill-color': '#b56a56', // Example fill color, change as necessary
+            'fill-opacity': 0.5
+        }
     });
 
-    map.addSource('elhaqh.4l9l2pmj', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.4l9l2pmj'
-    });
-
-    map.addLayer({
-        'id': '1838',
-        'source': 'elhaqh.4l9l2pmj',
-        'type': 'raster',
-        'layout': {
-            'visibility': 'none' // Initially hide the layer
-        },
-    });
-
-    map.addSource('elhaqh.6dftg5jc', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.6dftg5jc'
-    });
-
-    map.addLayer({
-        'id': '1906',
-        'source': 'elhaqh.6dftg5jc',
-        'type': 'raster',
-        'layout': {
-            'visibility': 'none' // Initially hide the layer
-        },
-    });
-
+    // Control Elements
     let currentLayerId = null;
-
     const layerText = document.getElementById('layerText'); // Get the layer text element
 
+    // Slider Control for Raster Layers
     document.getElementById('layerSlider').addEventListener('input', function() {
-
-        const value = parseInt(this.value);
+        const value = parseInt(this.value, 10);
+        hideAllLayers();
 
         if (value === 0) {
-            hideAllLayers();
+            layerText.textContent = '';
+        } else {
+            const selectedLayer = layers[value - 1];
+            switchLayer(selectedLayer.id);
+            layerText.textContent = selectedLayer.id;
+        }
+    });
 
-        } else if (value === 1) {
-            switchLayer('1630');
-            layerText.textContent = '1630'; // Display '1630' when slider value is 1
-
-        } else if (value === 2) {
-            switchLayer('1838');
-            layerText.textContent = '1838'; // Display '1838' when slider value is 2
-        
-        } else if (value === 3) {
-            switchLayer('1906');
-            layerText.textContent = '1906'; // Display '1838' when slider value is 3
+    // Toggle Button Functionality for GeoJSON Layer
+    document.getElementById('toggleGeoJSON').addEventListener('click', function() {
+        const visibility = map.getLayoutProperty('historic-layer', 'visibility');
+        if (visibility === 'visible') {
+            map.setLayoutProperty('historic-layer', 'visibility', 'none');
+            this.textContent = 'Show 2050 Flooding Projection';
+        } else {
+            map.setLayoutProperty('historic-layer', 'visibility', 'visible');
+            this.textContent = 'Hide 2050 Flooding Projection';
         }
     });
 
     function switchLayer(newLayerId) {
-        hideAllLayers();
+        if (currentLayerId) {
+            map.setLayoutProperty(currentLayerId, 'visibility', 'none');
+        }
         map.setLayoutProperty(newLayerId, 'visibility', 'visible');
         map.setPaintProperty(newLayerId, 'raster-opacity', 0.8);
         currentLayerId = newLayerId;
     }
 
     function hideAllLayers() {
-        if (currentLayerId) {
-            map.setLayoutProperty(currentLayerId, 'visibility', 'none');
-            currentLayerId = null;
-        }
+        layers.forEach(layer => {
+            map.setLayoutProperty(layer.id, 'visibility', 'none');
+        });
     }
 });
 
 
+
 // FOR HABIN'S PART
-$(window).scroll(function() {
-    let $window = $(window),
-        $body = $('body'),
-        // Include both section classes in the selection
-        $section = $('.section, .section-danny');
-    let scroll = $window.scrollTop() + ($window.height() * 1 / 10); // Adjusted for activation point
+// $(window).scroll(function() {
+//     // This scroll function now handles only the specific reclamation section
+//     $('.section').each(function() {
+//         let $section = $(this);
+//         let scroll = $(window).scrollTop() + ($(window).height() * 0.1);
+//         if ($section.position().top <= scroll && $section.position().top + $section.height() > scroll) {
+//             $('.section').removeClass('active');
+//             $section.addClass('active');
+//         } else {
+//             $section.removeClass('active');
+//         }
+//     });
+// });
 
-    $section.each(function() {
-        let $currentSection = $(this);
-        if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
-            // Section is in the active area
-            if (!$currentSection.hasClass('active')) {
-                $('.section, .section-danny').removeClass('active'); // Remove 'active' from all sections
-                $body.removeClass(function (index, css) {
-                    return (css.match (/(^|\s)color-\S+/g) || []).join(' ');
-                });
-                $currentSection.addClass('active'); // Add 'active' to this section
-            }
-        } else {
-            // Section is not in the active area
-            $currentSection.removeClass('active');
-        }
-    });
-}).scroll();
+// Separate interaction for the map not influenced by general scroll event
+function updateInteractiveMapOnScroll() {
+    let scrollPosition = $(window).scrollTop();
+    // Add logic here if the interactive map's display or behavior needs to change on scroll
+}
+
+// Debounce the map update function to minimize performance impact
+$(window).scroll(debounce(updateInteractiveMapOnScroll, 150));
+
+// Debounce implementation
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
 
 
-// FOR DANNY'S PART
+
+// FOR BAR CHART
 document.addEventListener('DOMContentLoaded', function() {
-    var imageLinks = document.querySelectorAll('#imageSelector li');
-    imageLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            const imagePath = this.getAttribute('data-image');
+    document.getElementById('imageSelector2').addEventListener('click', function(event) {
+        console.log("Clicked element:", event.target);  // Log which element was clicked
+        let target = event.target;
+        // Ensure we get the LI element, considering nested elements
+        while (target !== this && target.tagName.toLowerCase() !== 'li') {
+            target = target.parentNode;
+        }
+        if (target.tagName.toLowerCase() === 'li') {
+            const imagePath = target.getAttribute('data-image');
+            console.log("Attempting to load image path:", imagePath);  // Log the image path to be loaded
             if (imagePath) {
-                document.getElementById('selectedImage').src = imagePath;
+                document.getElementById('selectedImage2').src = imagePath;
+                console.log("Image path set successfully");
             } else {
                 console.error("Image path not found");
             }
-        });
+        }
     });
 });
+
+// FOR DANNY'S PART
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('imageSelector1').addEventListener('click', function(event) {
+        console.log("Clicked element:", event.target);  // Log which element was clicked
+        let target = event.target;
+        // Ensure we get the LI element, considering nested elements
+        while (target !== this && target.tagName.toLowerCase() !== 'li') {
+            target = target.parentNode;
+        }
+        if (target.tagName.toLowerCase() === 'li') {
+            const imagePath = target.getAttribute('data-image');
+            console.log("Attempting to load image path:", imagePath);  // Log the image path to be loaded
+            if (imagePath) {
+                document.getElementById('selectedImage1').src = imagePath;
+                console.log("Image path set successfully");
+            } else {
+                console.error("Image path not found");
+            }
+        }
+    });
+});
+
+// FOR SLIDESHOW
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slide");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+
 // FOR DANNY'S PART
 // $(window).scroll(function() {
 //     let $window = $(window),
-//         $body = $('body'),   
+//         $body = $('body'),
 //         $section = $('.section-danny');
 //     let scroll = $window.scrollTop() + ($window.height() * 1 / 100); // Adjusted for activation point
-  
-//     $section.each(function() { 
+
+//     $section.each(function() {
 //         let $currentSection = $(this);
 //         if ($currentSection.position().top <= scroll && $currentSection.position().top + $currentSection.height() > scroll) {
 //             // Section is in the active area

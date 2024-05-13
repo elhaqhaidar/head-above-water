@@ -14,7 +14,7 @@ const svg = d3.select("#chart")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // Load CSV data
-d3.csv("test-data.csv").then(function(data) {
+d3.csv("./data-files/data_fp4.csv").then(function(data) {
     // Define the available fields for grouping
     const fields = ["reclaimed", "9_inch", "21_inch", "36_inch"];
 
