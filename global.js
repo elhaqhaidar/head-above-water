@@ -50,7 +50,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // FOR TANYA'S PART
 var selectedZone = 0;
 var zones = ["No selection", "Waterfront", "scale"];
-var grades = ["", "A", "B"];
+var grades = [
+    "A", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+    "C", "A", "B","C", "A", "B", "C",
+];
 
 function updateHeading() {
     var heading = document.getElementById("zone-heading");
