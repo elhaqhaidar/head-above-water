@@ -151,7 +151,7 @@ map.on('style.load', () => {
 map.on('load', () => {
     // Adding raster sources and layers
     const layers = [
-        { id: '1630', source: 'elhaqh.60kkelua' },
+        { id: '1775', source: 'elhaqh.dkyujzd4' },
         { id: '1838', source: 'elhaqh.4l9l2pmj' },
         { id: '1906', source: 'elhaqh.6dftg5jc' }
     ];
@@ -174,14 +174,14 @@ map.on('load', () => {
     // Adding the GeoJSON source and layer
     map.addSource('historic-geojson', {
         'type': 'vector',
-        'url': 'mapbox://elhaqh.5aschcd5'
+        'url': 'mapbox://elhaqh.bgs4ssgs'
     });
 
     map.addLayer({
         'id': 'historic-layer',
         'type': 'fill',
         'source': 'historic-geojson',
-        'source-layer': 'cleaned_36inch_OGCCRS84-30742f',
+        'source-layer': 'cleaned_21inch_OGS84-0hvyjb',
         'layout': {
             'visibility': 'none' // Layer is initially hidden
         },
@@ -214,10 +214,10 @@ map.on('load', () => {
         const visibility = map.getLayoutProperty('historic-layer', 'visibility');
         if (visibility === 'visible') {
             map.setLayoutProperty('historic-layer', 'visibility', 'none');
-            this.textContent = 'Show 2070 Flooding Projection';
+            this.textContent = 'Show 2050 Flooding Projection';
         } else {
             map.setLayoutProperty('historic-layer', 'visibility', 'visible');
-            this.textContent = 'Hide 2070 Flooding Projection';
+            this.textContent = 'Hide 2050 Flooding Projection';
         }
     });
 
