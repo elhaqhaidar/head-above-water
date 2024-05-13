@@ -269,7 +269,7 @@ z-index: -1; /* Ensure the map background is behind the grid */
   opacity: 1;
   -webkit-transition: .2s;
   transition: opacity .2s;
-  width: 20%; /* Adjust this width as necessary */
+  width: 20%;
 }
 
 .slider::-webkit-slider-thumb {
@@ -451,6 +451,52 @@ z-index: -1; /* Ensure the map background is behind the grid */
   border-radius: 10px; 
   font-family: sans-serif;
 }
+
+.slider-container {
+  display: flex;  /* Enables flexbox layout */
+  justify-content: center;  /* Center horizontally */
+  align-items: center;  /* Center vertically */
+  height: 100vh;  /* Full viewport height */
+}
+
+/* Styling for the slider track */
+#display-slider {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background: #f0f0f0;
+  outline: none;
+  -webkit-appearance: none;
+  opacity: 1;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  width: 20%;
+}
+
+#display-slider:hover {
+  opacity: 1; /* Fully opaque on hover */
+}
+
+/* Styling for the slider thumb */
+#display-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Square shape width */
+  height: 20px; /* Square shape height */
+  background: rgb(255, 149, 0); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 0%; /* Square shape */
+}
+
+#display-slider::-moz-range-thumb {
+  width: 20px; /* Square shape width */
+  height: 20px; /* Square shape height */
+  background: rgb(255, 149, 0); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+  border-radius: 0%; /* Square shape */
+}
+
 
   /* For slideshow */
   .slideshow-container { 

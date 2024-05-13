@@ -254,19 +254,19 @@ map.on('load', () => {
 
 
 // FOR HABIN'S PART
-// $(window).scroll(function() {
-//     // This scroll function now handles only the specific reclamation section
-//     $('.section').each(function() {
-//         let $section = $(this);
-//         let scroll = $(window).scrollTop() + ($(window).height() * 0.1);
-//         if ($section.position().top <= scroll && $section.position().top + $section.height() > scroll) {
-//             $('.section').removeClass('active');
-//             $section.addClass('active');
-//         } else {
-//             $section.removeClass('active');
-//         }
-//     });
-// });
+$(window).scroll(function() {
+    // This scroll function now handles only the specific reclamation section
+    $('.section').each(function() {
+        let $section = $(this);
+        let scroll = $(window).scrollTop() + ($(window).height() * 0.1);
+        if ($section.position().top <= scroll && $section.position().top + $section.height() > scroll) {
+            $('.section').removeClass('active');
+            $section.addClass('active');
+        } else {
+            $section.removeClass('active');
+        }
+    });
+});
 
 // Separate interaction for the map not influenced by general scroll event
 function updateInteractiveMapOnScroll() {
