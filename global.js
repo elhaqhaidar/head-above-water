@@ -139,87 +139,94 @@ map.on('style.load', () => {
 });
 
 map.on('load', () => {
-    map.addSource('elhaqh.60kkelua', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.60kkelua'
+    // Adding raster sources and layers
+    const layers = [
+        { id: '1630', source: 'elhaqh.60kkelua' },
+        { id: '1838', source: 'elhaqh.4l9l2pmj' },
+        { id: '1906', source: 'elhaqh.6dftg5jc' }
+    ];
+
+    layers.forEach(layer => {
+        map.addSource(layer.id, {
+            'type': 'raster',
+            'url': 'mapbox://' + layer.source
+        });
+        map.addLayer({
+            'id': layer.id,
+            'source': layer.id,
+            'type': 'raster',
+            'layout': {
+                'visibility': 'none' // Initially hide the layer
+            },
+        });
+    });
+
+    // Adding the GeoJSON source and layer
+    map.addSource('historic-geojson', {
+        'type': 'vector',
+        'url': 'mapbox://elhaqh.5aschcd5'
     });
 
     map.addLayer({
-        'id': '1630',
-        'source': 'elhaqh.60kkelua',
-        'type': 'raster',
+        'id': 'historic-layer',
+        'type': 'fill',
+        'source': 'historic-geojson',
+        'source-layer': 'cleaned_36inch_OGCCRS84-30742f',
         'layout': {
-            'visibility': 'none' // Initially hide the layer
+            'visibility': 'none' // Layer is initially hidden
         },
+        'paint': {
+            'fill-color': '#78909c', // Example fill color, change as necessary
+            'fill-opacity': 0.5
+        }
     });
 
-    map.addSource('elhaqh.4l9l2pmj', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.4l9l2pmj'
-    });
-
-    map.addLayer({
-        'id': '1838',
-        'source': 'elhaqh.4l9l2pmj',
-        'type': 'raster',
-        'layout': {
-            'visibility': 'none' // Initially hide the layer
-        },
-    });
-
-    map.addSource('elhaqh.6dftg5jc', {
-        'type': 'raster',
-        'url': 'mapbox://elhaqh.6dftg5jc'
-    });
-
-    map.addLayer({
-        'id': '1906',
-        'source': 'elhaqh.6dftg5jc',
-        'type': 'raster',
-        'layout': {
-            'visibility': 'none' // Initially hide the layer
-        },
-    });
-
+    // Control Elements
     let currentLayerId = null;
-
     const layerText = document.getElementById('layerText'); // Get the layer text element
 
+    // Slider Control for Raster Layers
     document.getElementById('layerSlider').addEventListener('input', function() {
-
-        const value = parseInt(this.value);
+        const value = parseInt(this.value, 10);
+        hideAllLayers();
 
         if (value === 0) {
-            hideAllLayers();
+            layerText.textContent = '';
+        } else {
+            const selectedLayer = layers[value - 1];
+            switchLayer(selectedLayer.id);
+            layerText.textContent = selectedLayer.id;
+        }
+    });
 
-        } else if (value === 1) {
-            switchLayer('1630');
-            layerText.textContent = '1630'; // Display '1630' when slider value is 1
-
-        } else if (value === 2) {
-            switchLayer('1838');
-            layerText.textContent = '1838'; // Display '1838' when slider value is 2
-
-        } else if (value === 3) {
-            switchLayer('1906');
-            layerText.textContent = '1906'; // Display '1838' when slider value is 3
+    // Toggle Button Functionality for GeoJSON Layer
+    document.getElementById('toggleGeoJSON').addEventListener('click', function() {
+        const visibility = map.getLayoutProperty('historic-layer', 'visibility');
+        if (visibility === 'visible') {
+            map.setLayoutProperty('historic-layer', 'visibility', 'none');
+            this.textContent = 'Show 2070 Flooding Projection';
+        } else {
+            map.setLayoutProperty('historic-layer', 'visibility', 'visible');
+            this.textContent = 'Hide 2070 Flooding Projection';
         }
     });
 
     function switchLayer(newLayerId) {
-        hideAllLayers();
+        if (currentLayerId) {
+            map.setLayoutProperty(currentLayerId, 'visibility', 'none');
+        }
         map.setLayoutProperty(newLayerId, 'visibility', 'visible');
         map.setPaintProperty(newLayerId, 'raster-opacity', 0.8);
         currentLayerId = newLayerId;
     }
 
     function hideAllLayers() {
-        if (currentLayerId) {
-            map.setLayoutProperty(currentLayerId, 'visibility', 'none');
-            currentLayerId = null;
-        }
+        layers.forEach(layer => {
+            map.setLayoutProperty(layer.id, 'visibility', 'none');
+        });
     }
 });
+
 
 
 // FOR HABIN'S PART
