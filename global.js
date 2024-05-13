@@ -176,7 +176,7 @@ map.on('load', () => {
             'visibility': 'none' // Layer is initially hidden
         },
         'paint': {
-            'fill-color': '#78909c', // Example fill color, change as necessary
+            'fill-color': '#b56a56', // Example fill color, change as necessary
             'fill-opacity': 0.5
         }
     });
