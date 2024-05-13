@@ -12,11 +12,11 @@ const getDisplayMode = (value) => {
         case "0":
             return "Today";
         case "1":
-            return "9 inch";  // Match this with the switch cases
+            return "2030 (9 inch)";  // Match this with the switch cases
         case "2":
-            return "21 inch";
+            return "2050 (21 inch)";
         case "3":
-            return "36 inch";
+            return "2070 (36 inch)";
         default:
             return "Today";
     }
