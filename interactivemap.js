@@ -22,6 +22,7 @@ const getDisplayMode = (value) => {
     }
 };
 
+
 // Event handler to update the text and other related changes when the slider moves
 slider.on("input", function () {
     const sliderPosition = this.value; // Get the slider's current value
@@ -75,26 +76,26 @@ const svgMap = svg1.append("g")
     .attr("class", "map")
     .attr("transform", "translate(" + margin1.left + "," + margin1.top + ")");
 
-  
+
     const updateScatterplot0 = (mode) => {
         // Load the data from CSV file
-        d3.csv("test_data_fp4.csv").then(function(data) {
-    
+        d3.csv("./data-files/data_fp4.csv").then(function(data) {
+
         // Parse data
         data.forEach(function(d) {
             d.price = +d.Price;
             d.address = d.Address; // Parse address as string
             d.x = +d.Lat;
             d.y = +d.Lon;
-    
+
         });
 
-    
+
         const radiusScale = d3.scaleLinear()
             .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
             .range([3, 35]); // Adjust the range for appropriate circle sizes
-    
-    
+
+
         // Load the GeoJSON data and draw the map
         d3.json("boston.geojson").then(function(bosNeighborhoods) {
             // Projections for map
@@ -103,9 +104,9 @@ const svgMap = svg1.append("g")
                 .rotate([71.057, 0])
                 .center([0, 42.313])
                 .translate([width1 * 1.45/ 2, height1 * 1.4 / 2]);
-    
+
             const bos_geoPath = d3.geoPath().projection(bosProjection);
-    
+
             // Bind GeoJSON data to SVG and draw map
             svgMap.selectAll("path")
                 .data(bosNeighborhoods.features)
@@ -115,7 +116,7 @@ const svgMap = svg1.append("g")
                 .style("fill", "none")
                 .style("stroke", "black")
                 .style("stroke-width", 0.5);
-    
+
             // Convert latitudes and longitudes to projected coordinates
             data.forEach(function(d) {
                 const projectedCoordinates = bosProjection([d.Lon, d.Lat]); // Lon is X, Lat is Y
@@ -135,7 +136,7 @@ const svgMap = svg1.append("g")
                 .on("mouseover", (event, d) => {
                     popup.html(`
                         <div style="color: rgb(212, 116, 86); font-weight: bold; font-size: 18px;">Address: ${d.address}</div>
-                        <div style="color: white;">Typeology: ${d.Proptype}</div>
+                        <div style="color: white;">Property Type: ${d.Proptype}</div>
                         <div style="color: white;">Price: $${d.price}</div>
                     `)
                     .style("display", "block")
@@ -151,22 +152,23 @@ const svgMap = svg1.append("g")
 
         const updateScatterplot1 = (mode) => {
             // Load the data from CSV file
-            d3.csv("test_data_fp4.csv").then(function(data) {
-        
+            d3.csv("./data-files/data_fp4.csv").then(function(data) {
+
             // Parse data
             data.forEach(function(d) {
                 d.price = +d.Price;
                 d.address = d.Address; // Parse address as string
                 d.x = +d.Lat;
                 d.y = +d.Lon;
-        
+                d.nine = +d.nine;
+
             });
-        
+
             const radiusScale = d3.scaleLinear()
                 .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
                 .range([3, 35]); // Adjust the range for appropriate circle sizes
-        
-        
+
+
             // Load the GeoJSON data and draw the map
             d3.json("boston.geojson").then(function(bosNeighborhoods) {
                 // Projections for map
@@ -175,9 +177,9 @@ const svgMap = svg1.append("g")
                     .rotate([71.057, 0])
                     .center([0, 42.313])
                     .translate([width1 * 1.45/ 2, height1 * 1.4 / 2]);
-        
+
                 const bos_geoPath = d3.geoPath().projection(bosProjection);
-        
+
                 // Bind GeoJSON data to SVG and draw map
                 svgMap.selectAll("path")
                     .data(bosNeighborhoods.features)
@@ -187,7 +189,7 @@ const svgMap = svg1.append("g")
                     .style("fill", "none")
                     .style("stroke", "black")
                     .style("stroke-width", 0.5);
-        
+
                 // Convert latitudes and longitudes to projected coordinates
                 data.forEach(function(d) {
                     const projectedCoordinates = bosProjection([d.Lon, d.Lat]); // Lon is X, Lat is Y
@@ -208,7 +210,7 @@ const svgMap = svg1.append("g")
                     .on("mouseover", (event, d) => {
                         popup.html(`
                             <div style="color: rgb(212, 116, 86); font-weight: bold; font-size: 18px;">Address: ${d.address}</div>
-                            <div style="color: white;">Typeology: ${d.Proptype}</div>
+                            <div style="color: white;">Property Type: ${d.Proptype}</div>
                             <div style="color: white;">Price: $${d.price}</div>
                         `)
                         .style("display", "block")
@@ -224,22 +226,23 @@ const svgMap = svg1.append("g")
 
             const updateScatterplot2 = (mode) => {
                 // Load the data from CSV file
-                d3.csv("test_data_fp4.csv").then(function(data) {
-            
+                d3.csv("./data-files/data_fp4.csv").then(function(data) {
+
                 // Parse data
                 data.forEach(function(d) {
                     d.price = +d.Price;
                     d.address = d.Address; // Parse address as string
                     d.x = +d.Lat;
                     d.y = +d.Lon;
-            
+                    d.nine = +d.twentyone;
+
                 });
-            
+
                 const radiusScale = d3.scaleLinear()
                     .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
                     .range([3, 35]); // Adjust the range for appropriate circle sizes
-            
-            
+
+
                 // Load the GeoJSON data and draw the map
                 d3.json("boston.geojson").then(function(bosNeighborhoods) {
                     // Projections for map
@@ -248,9 +251,9 @@ const svgMap = svg1.append("g")
                         .rotate([71.057, 0])
                         .center([0, 42.313])
                         .translate([width1 * 1.45/ 2, height1 * 1.4 / 2]);
-            
+
                     const bos_geoPath = d3.geoPath().projection(bosProjection);
-            
+
                     // Bind GeoJSON data to SVG and draw map
                     svgMap.selectAll("path")
                         .data(bosNeighborhoods.features)
@@ -260,7 +263,7 @@ const svgMap = svg1.append("g")
                         .style("fill", "none")
                         .style("stroke", "black")
                         .style("stroke-width", 0.5);
-            
+
                     // Convert latitudes and longitudes to projected coordinates
                     data.forEach(function(d) {
                         const projectedCoordinates = bosProjection([d.Lon, d.Lat]); // Lon is X, Lat is Y
@@ -280,7 +283,7 @@ const svgMap = svg1.append("g")
                         .on("mouseover", (event, d) => {
                             popup.html(`
                                 <div style="color: rgb(212, 116, 86); font-weight: bold; font-size: 18px;">Address: ${d.address}</div>
-                                <div style="color: white;">Typeology: ${d.Proptype}</div>
+                                <div style="color: white;">Property Type: ${d.Proptype}</div>
                                 <div style="color: white;">Price: $${d.price}</div>
                             `)
                             .style("display", "block")
@@ -296,34 +299,35 @@ const svgMap = svg1.append("g")
 
                 const updateScatterplot3 = (mode) => {
                     // Load the data from CSV file
-                    d3.csv("test_data_fp4.csv").then(function(data) {
-                
+                    d3.csv("./data-files/data_fp4.csv").then(function(data) {
+
                     // Parse data
                     data.forEach(function(d) {
                         d.price = +d.Price;
                         d.address = d.Address; // Parse address as string
                         d.x = +d.Lat;
                         d.y = +d.Lon;
-                
+                        d.thirtysix = +d.thirtysix
+
                     });
-                
+
                     // Set up scales for scatterplot with padding
                         const xPadding = 50;
                         const yPadding = 50;
-                
+
                         const xScale = d3.scaleLinear()
                             .domain([d3.min(data, d => d.x) - xPadding, d3.max(data, d => d.x) + xPadding])
                             .range([0, width1]);
-                
+
                         const yScale = d3.scaleLinear()
                             .domain([d3.min(data, d => d.y) - yPadding, d3.max(data, d => d.y) + yPadding])
                             .range([height1, 0]);
-                
+
                     const radiusScale = d3.scaleLinear()
                         .domain([d3.min(data, d => d.price), d3.max(data, d => d.price)])
                         .range([3, 35]); // Adjust the range for appropriate circle sizes
-                
-                
+
+
                     // Load the GeoJSON data and draw the map
                     d3.json("boston.geojson").then(function(bosNeighborhoods) {
                         // Projections for map
@@ -332,9 +336,9 @@ const svgMap = svg1.append("g")
                             .rotate([71.057, 0])
                             .center([0, 42.313])
                             .translate([width1 * 1.45/ 2, height1 * 1.4 / 2]);
-                
+
                         const bos_geoPath = d3.geoPath().projection(bosProjection);
-                
+
                         // Bind GeoJSON data to SVG and draw map
                         svgMap.selectAll("path")
                             .data(bosNeighborhoods.features)
@@ -344,7 +348,7 @@ const svgMap = svg1.append("g")
                             .style("fill", "none")
                             .style("stroke", "black")
                             .style("stroke-width", 0.5);
-                
+
                         // Convert latitudes and longitudes to projected coordinates
                         data.forEach(function(d) {
                             const projectedCoordinates = bosProjection([d.Lon, d.Lat]); // Lon is X, Lat is Y
@@ -364,7 +368,7 @@ const svgMap = svg1.append("g")
                             .on("mouseover", (event, d) => {
                                 popup.html(`
                                     <div style="color: rgb(212, 116, 86); font-weight: bold; font-size: 18px;">Address: ${d.address}</div>
-                                    <div style="color: white;">Typeology: ${d.Proptype}</div>
+                                    <div style="color: white;">Property Type: ${d.Proptype}</div>
                                     <div style="color: white;">Price: $${d.price}</div>
                                     <div style="color: white;">Flood: $${d.nine}</div>
                                 `)
@@ -391,4 +395,3 @@ const svgMap = svg1.append("g")
                     else {
                         updateScatterplot2(mode);
                     }
-
